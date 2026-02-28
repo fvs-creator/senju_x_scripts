@@ -21,6 +21,7 @@ body {
 
 /* Animated background */
 body::before {
+    z-index: 0;
     content: "";
     position: fixed;
     width: 100%;
@@ -35,11 +36,16 @@ body::before {
 }
 
 header {
+    position: relative;
+    z-index: 2;
     text-align: center;
     padding: 30px 10px;
 }
 
 .logo {
+    filter: none !important;
+    position: relative;
+    z-index: 2;
     font-size: 32px;
     font-weight: bold;
     background: linear-gradient(90deg,#00f0ff,#ff00c8);
@@ -113,7 +119,7 @@ button:active {
 
 <header>
 <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
-<img src="senju-logo.png" style="width:80px; height:80px; object-fit:contain;">
+<<img src="senju-logo.png" style="width:80px; height:80px; object-fit:contain; position:relative; z-index:2; filter:none !important;">
 <div class="logo">senju_x_scripts</div>
 </div>
 <div class="stats">Active Users: <span id="users">500</span></div>
