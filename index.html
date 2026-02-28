@@ -9,112 +9,153 @@
 
 <style>
 
-body {
-    background: url('roblox-bg.jpg') center/cover no-repeat fixed;
+body{
+margin:0;
+font-family:Orbitron,sans-serif;
+color:white;
+overflow-x:hidden;
 
-    margin: 0;
-    font-family: Orbitron, sans-serif;
-    background: radial-gradient(circle at center, #0a0a0a, #000000);
-    color: white;
-    overflow-x: hidden;
+background:
+radial-gradient(circle at center, rgba(10,10,10,0.85), rgba(0,0,0,0.95)),
+url('roblox-bg.jpg') center/cover no-repeat fixed;
 }
 
-/* Animated background */
-body::before {
-    z-index: 0;
-    content: "";
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(3px);
+/* overlay */
+body::before{
+content:"";
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.55);
+backdrop-filter:blur(4px);
+z-index:0;
 }
 
-@keyframes bgMove {
-    0% { transform: translate(-25%, -25%) rotate(0deg); }
-    100% { transform: translate(-25%, -25%) rotate(360deg); }
+header{
+position:relative;
+z-index:2;
+text-align:center;
+padding:25px 10px;
+animation:fadeDown 1s ease;
 }
 
-header {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 30px 10px;
+@keyframes fadeDown{
+from{opacity:0;transform:translateY(-20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-.logo {
-    filter: none !important;
-    position: relative;
-    z-index: 2;
-    font-size: 32px;
-    font-weight: bold;
-    background: linear-gradient(90deg,#00f0ff,#ff00c8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.logo{
+font-size:30px;
+font-weight:bold;
+background:linear-gradient(90deg,#00f0ff,#ff00c8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
-.stats {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #00f0ff;
+.stats{
+margin-top:5px;
+font-size:14px;
+color:#00f0ff;
 }
 
-.container {
-    padding: 15px;
+.container{
+padding:15px;
+position:relative;
+z-index:2;
 }
 
-.script-box {
-    background: rgba(255,255,255,0.05);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.1);
+.script-box{
+background:rgba(255,255,255,0.05);
+border-radius:14px;
+padding:15px;
+margin-bottom:15px;
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+
+animation:fadeUp 0.8s ease;
 }
 
-.script-title {
-    font-size: 18px;
-    margin-bottom: 10px;
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
 }
 
-.script-content {
-    background: rgba(0,0,0,0.6);
-    padding: 10px;
-    border-radius: 8px;
-    filter: blur(6px);
-    user-select: none;
-
-    max-height: 120px;
-    overflow-y: auto;
-    overflow-x: auto;
-
-    white-space: pre-wrap;
-    word-break: break-all;
-
-    font-size: 12px;
+.script-title{
+font-size:17px;
+margin-bottom:8px;
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    font-family: Orbitron;
-    background: linear-gradient(90deg,#00f0ff,#ff00c8);
-    color: black;
-    font-weight: bold;
+.script-content{
+
+background:rgba(0,0,0,0.6);
+padding:10px;
+border-radius:8px;
+
+filter:blur(6px);
+user-select:none;
+
+max-height:120px;
+overflow:auto;
+font-size:12px;
+transition:0.4s;
+
 }
 
-button:active {
-    transform: scale(0.95);
+/* unlocked */
+.script-content.unlocked{
+
+filter:blur(0);
+user-select:text;
+background:rgba(0,0,0,0.8);
+
 }
 
-.footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 12px;
-    color: gray;
+button{
+
+margin-top:8px;
+padding:10px;
+width:100%;
+border:none;
+border-radius:8px;
+font-family:Orbitron;
+
+background:linear-gradient(90deg,#00f0ff,#ff00c8);
+color:black;
+font-weight:bold;
+
+cursor:pointer;
+transition:0.2s;
+
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+button:active{
+transform:scale(0.95);
+}
+
+.footer{
+text-align:center;
+padding:20px;
+font-size:12px;
+color:gray;
+position:relative;
+z-index:2;
+}
+
+/* mobile optimize */
+@media(max-width:500px){
+
+.logo{
+font-size:24px;
+}
+
+.script-content{
+font-size:11px;
+}
+
 }
 
 </style>
@@ -122,31 +163,54 @@ button:active {
 <body>
 
 <header>
-<div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
-<<img src="senju-logo.png" style="width:80px; height:80px; object-fit:contain; position:relative; z-index:2; filter:none !important;">
+
+<img src="senju-logo.png"
+style="width:80px;height:80px;object-fit:contain;">
+
 <div class="logo">senju_x_scripts</div>
+
+<div class="stats">
+Active Users: <span id="users">503</span>
 </div>
-<div class="stats">Active Users: <span id="users">500</span></div>
+
 </header>
 
 <div class="container">
 
 <div class="script-box">
+
 <div class="script-title">Universal Script</div>
+
 <div class="script-content" id="script1">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/fvs-creator/FVS-vs/refs/heads/main/loader.lua"))()
 </div>
-<button onclick="unlock('script1')">Follow TikTok to Unlock</button>
-<button onclick="copyScript('script1')">Copy Script</button>
+
+<button onclick="unlock('script1')">
+Follow TikTok to Unlock
+</button>
+
+<button onclick="copyScript('script1')">
+Copy Script
+</button>
+
 </div>
 
 <div class="script-box">
+
 <div class="script-title">Murder Mystery 2 Script</div>
+
 <div class="script-content" id="script2">
 loadstring(game:HttpGet("https://raw.githubusercontent.com/fvs-creator/FVS-mm2/refs/heads/main/loader.lua"))()
 </div>
-<button onclick="unlock('script2')">Follow TikTok to Unlock</button>
-<button onclick="copyScript('script2')">Copy Script</button>
+
+<button onclick="unlock('script2')">
+Follow TikTok to Unlock
+</button>
+
+<button onclick="copyScript('script2')">
+Copy Script
+</button>
+
 </div>
 
 </div>
@@ -157,40 +221,77 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/fvs-creator/FVS-mm2/r
 
 <script>
 
-function unlock(id) {
-    window.open('https://tiktok.com/@senju_x_scripts', '_blank');
-    const script = document.getElementById(id);
-    script.classList.add("unlocked");
+/* restore unlock state */
+
+window.onload=()=>{
+
+["script1","script2"].forEach(id=>{
+
+if(localStorage.getItem(id)=="unlocked"){
+
+document.getElementById(id).classList.add("unlocked")
+
 }
 
-function copyScript(id) {
-    const script = document.getElementById(id);
+})
 
-    if (!script.classList.contains("unlocked")) {
-        alert("Unlock first by subscribing");
-        return;
-    }
-
-    navigator.clipboard.writeText(script.innerText);
-    alert("Copied!");
 }
 
-/* Animated active users */
-setInterval(() => {
-    const el = document.getElementById("users");
-    let num = parseInt(el.innerText);
+/* unlock */
 
-    const change = Math.floor(Math.random()*3);
+function unlock(id){
 
-    if(Math.random()>0.5) num += change;
-    else num -= change;
+window.open("https://tiktok.com/@senju_x_scripts","_blank")
 
-    if(num < 480) num = 480;
-    if(num > 520) num = 520;
+const script=document.getElementById(id)
 
-    el.innerText = num;
+script.classList.add("unlocked")
 
-}, 2000);
+localStorage.setItem(id,"unlocked")
+
+alert("Unlocked successfully!")
+
+}
+
+/* copy */
+
+function copyScript(id){
+
+const script=document.getElementById(id)
+
+if(!script.classList.contains("unlocked")){
+
+alert("Unlock first")
+
+return
+
+}
+
+navigator.clipboard.writeText(script.innerText)
+
+alert("Copied!")
+
+}
+
+/* animated active users */
+
+setInterval(()=>{
+
+const el=document.getElementById("users")
+
+let num=parseInt(el.innerText)
+
+let change=Math.floor(Math.random()*4)
+
+if(Math.random()>0.5)num+=change
+else num-=change
+
+if(num<487)num=487
+if(num>526)num=526
+
+el.innerText=num
+
+},2000)
 
 </script>
 
